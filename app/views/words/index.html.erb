@@ -1,0 +1,145 @@
+<h5>index.html.erb</h5>
+<h3>一覧ページ</h3>
+<div class="words-container">
+  <div class="words-yuri">
+    <%= link_to "新規投稿へ", new_word_path %>
+    <!--ここから-->
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"words",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+<!--ここまで-->
+  </div>
+  <% @words.each do |t| %>
+    <% if t.frequency == 1 then %>
+      <h2>レベル1</h2>
+      <div class="word">
+        <%= link_to t.user.name, user_path(t.user.id) %> # 追記
+        <%= t.user.email %>
+        <%= t.phrase %>
+        <%= t.phrase1 %>
+        <%= t.phrase2 %>
+        <%= t.phrase3 %>
+        <%= t.phrase4 %>
+        <%= t.phrase5 %>
+        <%= t.phrase6 %>
+        <%= t.phrase7 %>
+        <%= t.phrase8 %>
+        <%= t.phrase9 %>
+
+        <%= t.about %>
+        <%= t.category %>
+        <%= t.frequency %>
+        <% if user_signed_in? %>
+          <% if current_user.already_liked?(t) %>
+              <%= button_to word_like_path(id: t.id, word_id: t.id), method: :delete do %>
+                <i class="fas fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          <% else %>
+              <%= button_to word_likes_path(id: t.id, word_id: t.id), method: :post do %>
+                <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          <% end %>
+        <% else %>
+          <i class="far fa-heart"></i><%= t.likes.count %>
+        <% end %>
+  # ここまで  
+        <%= link_to "詳細へ", word_path(t.id) %>
+        <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集する", edit_word_path(t.id) %>
+          <%= link_to "削除する", word_path(t.id), method: :delete %>
+        <% end %>
+      </div>
+    <% elsif t.frequency == 2 then%>
+      <h2>レベル2</h2>
+      <div class="word">
+        <%= link_to t.user.name, user_path(t.user.id) %> # 追記
+        <%= t.user.email %>
+        <%= t.phrase %>
+        <%= t.phrase1 %>
+        <%= t.phrase2 %>
+        <%= t.phrase3 %>
+        <%= t.phrase4 %>
+        <%= t.phrase5 %>
+        <%= t.phrase6 %>
+        <%= t.phrase7 %>
+        <%= t.phrase8 %>
+        <%= t.phrase9 %>
+
+        <%= t.about %>
+        <%= t.category %>
+        <%= t.frequency %>
+        <% if user_signed_in? %>
+          <% if current_user.already_liked?(t) %>
+              <%= button_to word_like_path(id: t.id, word_id: t.id), method: :delete do %>
+                <i class="fas fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          <% else %>
+              <%= button_to word_likes_path(id: t.id, word_id: t.id), method: :post do %>
+                <i class="far fa-heart"></i><%= t.likes.count %>
+              <% end %>
+          <% end %>
+        <% else %>
+          <i class="far fa-heart"></i><%= t.likes.count %>
+        <% end %> 
+        <%= link_to "詳細へ", word_path(t.id) %>
+        <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集する", edit_word_path(t.id) %>
+          <%= link_to "削除する", word_path(t.id), method: :delete %>
+        <% end %>
+      </div>
+    <% else %>
+      <h2>レベル3</h2>
+      <div class="word">
+      <%= link_to t.user.name, user_path(t.user.id) %> # 追記
+      <%= t.user.email %>
+      <%= t.phrase %>
+      <%= t.phrase1 %>
+      <%= t.phrase2 %>
+      <%= t.phrase3 %>
+      <%= t.phrase4 %>
+      <%= t.phrase5 %>
+      <%= t.phrase6 %>
+      <%= t.phrase7 %>
+      <%= t.phrase8 %>
+      <%= t.phrase9 %>
+
+      <%= t.about %>
+      <%= t.category %>
+      <%= t.frequency %>
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+            <%= button_to word_like_path(id: t.id, word_id: t.id), method: :delete do %>
+              <i class="fas fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% else %>
+            <%= button_to word_likes_path(id: t.id, word_id: t.id), method: :post do %>
+              <i class="far fa-heart"></i><%= t.likes.count %>
+            <% end %>
+        <% end %>
+      <% else %>
+        <i class="far fa-heart"></i><%= t.likes.count %>
+      <% end %> 
+      <%= link_to "詳細へ", word_path(t.id) %>
+      <% if user_signed_in? && current_user.id == t.user_id %>
+        <%= link_to "編集する", edit_word_path(t.id) %>
+        <%= button_to "削除する", word_path(t.id), method: :delete %>
+      <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<% if user_signed_in? %>
+  <%= link_to "マイページへ", user_path(current_user.id) %>
+<% end %>
+<%= link_to "友達フレーズ頻度1へ", words_friend_1_path %>
+<%= link_to "友達フレーズ頻度2へ", words_friend_2_path %>
+<%= link_to "友達フレーズ頻度3へ", words_friend_3_path %>
+<%= link_to "恋愛フレーズ頻度1へ", words_love_1_path %>
+<%= link_to "恋愛フレーズ頻度2へ", words_love_2_path %>
+<%= link_to "恋愛フレーズ頻度3へ", words_love_3_path %>
+<%= link_to "ビジネスフレーズ頻度1へ", words_work_1_path %>
+<%= link_to "ビジネスフレーズ頻度2へ", words_work_2_path %>
+<%= link_to "ビジネスフレーズ頻度3へ", words_work_3_path %>
+<%= link_to "観光地一覧へ", words_kankou_path %>

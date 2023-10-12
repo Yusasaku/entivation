@@ -1,0 +1,60 @@
+<h1>show.html.erb</h1>
+<h3>phrase詳細</h3>
+<div class="word">
+  <p><%= @word.created_at %></p>
+  <%= @word.phrase %>
+  <%= @word.phrase1 %>
+  <%= @word.phrase2 %>
+  <%= @word.phrase3 %>
+  <%= @word.phrase4 %>
+  <%= @word.phrase5 %>
+  <%= @word.phrase6 %>
+  <%= @word.phrase7 %>
+  <%= @word.phrase8 %>
+  <%= @word.phrase9 %>
+
+
+    <%= @word.about %>
+    <%= @word.category %>
+    <%= @word.frequency %>
+</div>
+<% if user_signed_in? %>
+<% if current_user.already_liked?(@word) %>
+  <%= button_to word_like_path(@word), method: :delete do %>
+    <i class="fas fa-heart"></i><%= @word.likes.count %>
+    <% end %>
+<% else %>
+  <%= button_to word_likes_path(@word), method: :post do %>
+    <i class="far fa-heart"></i><%= @word.likes.count %>
+  <% end %>
+<% end %>
+<% else %>
+  <i class="far fa-heart"></i><%= @word.likes.count %>
+<% end %>
+<h2>いいねしたユーザー</h2>
+<% @word.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+<%= link_to "編集する", edit_word_path(@word.id) %>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@word, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "一覧に戻る", words_path %>

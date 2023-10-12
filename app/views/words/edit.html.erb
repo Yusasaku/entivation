@@ -1,0 +1,69 @@
+<%= form_for @word do |f| %>
+
+  <div class="field">
+  <%= f.label :タイトル  %>
+  <%= f.text_field :phrase, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :phrase1 %>
+<%= f.text_field :phrase1, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :フレーズ１ %>
+<%= f.text_field :phrase2, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :phrase2 %>
+<%= f.text_field :phrase3, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :フレーズ２ %>
+<%= f.text_field :phrase4, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :phrase3 %>
+<%= f.text_field :phrase5, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :フレーズ３ %>
+<%= f.text_field :phrase6, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :phrase4 %>
+<%= f.text_field :phrase7, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :フレーズ４ %>
+<%= f.text_field :phrase8, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :phrase5 %>
+<%= f.text_field :phrase9, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :フレーズ５%>
+<%= f.text_field :phrase10, :size => 30 %>
+</div>
+
+<div class="field">
+<%= f.label :補足  %>
+<%= f.text_area :about, :size => "30x2" %>
+</div>
+
+
+<div class="field">
+<%= f.select :category, [["初対面", "friend_1"], ["喜怒哀楽", "friend_2"], ["予定調整", "friend_3"], ["恋愛、初対面", "love_1"], ["恋人", "love_2"], ["喧嘩、仲直り", "love_3"], ["ビジネスメール", "work_1"], ["あいさつ", "work_2"], ["感謝、謝罪", "work_3"]], include_blank: "どの投稿？" %>
+</div>
+ 
+    <%= f.submit "編集する" %>
+  <% end %>

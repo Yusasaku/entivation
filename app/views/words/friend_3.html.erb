@@ -1,0 +1,17 @@
+<h1>友達</h1>
+<% @words.each do |t| %>
+  <% if t.category == "friend_3" %> 
+  <p>タイトル:<%= t.phrase %></p>
+  <p>phrase1:<%= t.phrase1 %></p>
+  <p>フレーズ１:<%= t.phrase2 %></p>
+  <p>phrase2:<%= t.phrase3 %></p>
+  <p>フレーズ２:<%= t.phrase4 %></p>
+  <p>phrase3:<%= t.phrase5 %></p>
+  <p>フレーズ３:<%= t.phrase6 %></p>
+  <p>phrase4:<%= t.phrase7 %></p>
+  <p>フレーズ４:<%= t.phrase8 %></p>
+  <p>phrase5:<%= t.phrase9 %></p>
+  <p>フレーズ５:<%= t.phrase10 %></p>
+  <p>補足:<%= t.about %></p>
+  <% end %>
+<% end %>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yusakuenglish</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/697c90d5e7.js"  crossorigin="anonymous"></script> 
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+  <header>
+  <div class="header-logo">
+    <h5>Entivation</h5>
+  </div>
+  <div class="openbtn"><span></span><span></span><span></span></div>
+  <nav id="g-nav">
+    <div id="g-nav-list">  
+      <ul>
+        <li>
+          <a href="<%= root_path =%>">Top</a> 
+        </li>  
+        <li>
+          <a href="<%= words_path =%>">Index</a> 
+        </li>  
+        <li>
+          <a href="<%= new_word_path =%>">Post</a> 
+        </li>  
+        <li>
+          <a href="#">List</a> 
+        </li>  
+        <li>
+        <% if user_signed_in? %>
+          <a href="<%= user_path(current_user.id) =%>">Mypage</a> 
+          <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <% else %>
+          <a href="#">Log in</a> 
+          <a href="#">Sign up</a> 
+        <% end %>
+        </li>  
+      </ul>  
+    </div>
+  </nav>
+</header>
+  <main>
+   <%= yield %>
+  </main>
+ </body>
+ <footer>
+ <p>Copyright © GeekSalon All Rights Reserved.</p>
+ </footer>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+$(".openbtn").click(function () {
+ $(this).toggleClass("active");
+ $("#g-nav").toggleClass("panelactive");
+});
+$("#g-nav a").click(function () {
+ $(".openbtn").removeClass("active");
+ $("#g-nav").removeClass("panelactive");
+});
+</script>
